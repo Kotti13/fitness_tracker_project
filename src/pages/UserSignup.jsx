@@ -15,7 +15,7 @@ const UserSignup = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match');
@@ -23,13 +23,13 @@ const UserSignup = () => {
     }
     try {
       await createUserWithEmailAndPassword(auth, formData.email, formData.password);
-      navigate('/dashboard');
+      navigate('/userdashboard');
     } catch (err) {
       setError('Failed to create account. Please try again.');
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
